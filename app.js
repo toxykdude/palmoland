@@ -342,7 +342,12 @@
     var m1Reached = total >= m1.amount;
 
     milestones.forEach(function (m, idx) {
-      var sub = Math.min(100, (total / m.amount) * 100);
+      /* Sequential milestones: money beyond the previous milestone counts here */
+      var base = idx === 0 ? 0 : milestones[idx - 1].amount;
+      var rangeTarget = m.amount - base;
+      var raised = Math.max(0, Math.min(total, m.amount) - base);
+      var sub = (raised / rangeTarget) * 100;
+
       var subbar = $("#subbar-" + idx);
       var amountEl = $("#milestone-amount-" + idx);
       var stateEl = $("#milestone-state-" + idx);
@@ -351,8 +356,8 @@
       requestAnimationFrame(function () {
         requestAnimationFrame(function () { subbar.style.width = sub + "%"; });
       });
-      amountEl.textContent = fmt(Math.min(total, m.amount)) + " de " + fmt(m.amount);
-      stateEl.textContent = total >= m.amount ? "¡Lograda! ✅" : "En camino";
+      amountEl.textContent = fmt(raised) + " de " + fmt(rangeTarget);
+      stateEl.textContent = total >= m.amount ? "¡Lograda! ✅" : (raised > 0 ? "En camino" : "Pendiente");
 
       if (total >= m.amount && card) card.classList.add("unlocked");
     });
