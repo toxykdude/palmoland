@@ -855,6 +855,92 @@ a:hover { text-decoration: underline; }
 .pay-steps-note a { color: var(--cyan); font-weight: 600; }
 
 /* ============================================================
+   GALLERY (finca page)
+   ============================================================ */
+.location-line {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: -1.4rem auto 2rem;
+  max-width: 560px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.g-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  aspect-ratio: 4 / 3;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.g-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.g-item:hover { transform: translateY(-3px); border-color: rgba(62, 224, 255, 0.4); }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 6, 14, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.lightbox img {
+  max-width: 94vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lb-count { color: var(--muted); font-size: 0.9rem; letter-spacing: 0.1em; }
+
+.lb-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.lb-btn:hover { background: rgba(62, 224, 255, 0.15); border-color: var(--cyan); }
+
+.lb-prev { left: 0.8rem; }
+.lb-next { right: 0.8rem; }
+.lb-close { top: 0.8rem; right: 0.8rem; transform: none; font-size: 1.2rem; }
+
+/* ============================================================
    RESPONSIVE — tablet and up
    ============================================================ */
 @media (min-width: 640px) {
@@ -862,6 +948,7 @@ a:hover { text-decoration: underline; }
   .milestones { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: repeat(3, 1fr); }
   .step { padding-top: 1.8rem; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 }
 
 @media (min-width: 900px) {

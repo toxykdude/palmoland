@@ -10,6 +10,7 @@ vida. Una página estática, sin backend: todo el contenido vive en `data.json`.
 - `index.html` / `styles.css` / `app.js` — la página (vanilla HTML/CSS/JS, sin build).
 - `data.json` — la única fuente de verdad: meta total, milestones y participantes.
 - `aportar.html` — página de pago: cuenta Bancolombia + QR (link desde el botón "Quiero aportar").
+- `finca.html` — galería de la finca con lightbox (imágenes en `images/finca/{thumb,full}`).
 - `images/pals/` — fotos de perfil de la banda (recortes circulares de WhatsApp).
 - GitHub Pages sirve la rama `main` (raíz del repo). Cada push a `main` se publica solo.
 
@@ -36,7 +37,8 @@ vida. Una página estática, sin backend: todo el contenido vive en `data.json`.
   los amigos pueden escanearlo con cualquier app bancaria o transferir al número.
 
 Pendientes del admin (marcados con `TODO-ADMIN` en las páginas):
-finca (ubicación), titular de la cuenta, y WhatsApp de contacto.
+titular de la cuenta, y WhatsApp de contacto. La finca ya está publicada
+(`finca.html` — vía Manizales – Medellín, Romboy Pacífico Tres).
 
 ## Notas técnicas
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Finca — Palmoland 🌴</title>
+  <meta name="description" content="La finca de Palmoland: vía Manizales – Medellín, cerca del nuevo Romboy Pacífico Tres. Mira las fotos del sitio de la fiesta. 28 y 29 de noviembre de 2026." />
+  <meta name="theme-color" content="#070b16" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A1%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="wrap">
+    <nav class="page-head" aria-label="Volver al inicio">
+      <a href="index.html">← Volver</a>
+      <span class="page-logo" aria-hidden="true">PALMOLAND 🌴</span>
+    </nav>
+  </div>
+
+  <main class="section" style="padding-top:1.5rem">
+    <div class="wrap">
+      <h1 class="section-title">La Finca 🏡</h1>
+      <p class="section-sub">El sitio de la fiesta: <strong>vía Manizales – Medellín</strong>, cerca del nuevo Romboy Pacífico Tres.</p>
+
+      <div class="card" style="margin-bottom:1.6rem;padding:1.2rem 1.4rem">
+        <p style="margin:0;text-align:center">📍 Vía Manizales – Medellín · Romboy Pacífico Tres &nbsp;·&nbsp; 📅 28 y 29 de noviembre de 2026</p>
+      </div>
+
+      <div class="gallery-grid" id="gallery"></div>
+
+      <div class="share-row">
+        <a class="btn btn-big" href="aportar.html" style="margin-top:0">Quiero aportar 💸</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-title">PALMOLAND 🌴</p>
+      <p>Hecho con ❤️, 🎧 y cero sueño por los amigos de toda la vida.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Gallery: 9 photos, thumbs in grid, full-size on click (lightbox)
+    (function () {
+      "use strict";
+      var COUNT = 9;
+      var gallery = document.getElementById("gallery");
+      var current = 0;
+      var lightbox = null;
+      var lbImg = null;
+      var lbCount = null;
+
+      for (var i = 1; i <= COUNT; i++) {
+        var n = String(i).padStart(2, "0");
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "g-item";
+        btn.setAttribute("aria-label", "Ver foto " + i + " de la finca en grande");
+        var img = document.createElement("img");
+        img.src = "images/finca/thumb/" + n + ".jpg";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.alt = "Foto " + i + " de la finca de Palmoland";
+        btn.appendChild(img);
+        btn.addEventListener("click", open.bind(null, i - 1));
+        gallery.appendChild(btn);
+      }
+
+      function srcFor(idx) {
+        return "images/finca/full/" + String(idx + 1).padStart(2, "0") + ".jpg";
+      }
+
+      function open(idx) {
+        current = idx;
+        if (!lightbox) buildLightbox();
+        show();
+        lightbox.hidden = false;
+        document.body.style.overflow = "hidden";
+      }
+
+      function buildLightbox() {
+        lightbox = document.createElement("div");
+        lightbox.className = "lightbox";
+        lightbox.hidden = true;
+
+        lbImg = document.createElement("img");
+        lbImg.alt = "Foto de la finca de Palmoland";
+        lbCount = document.createElement("p");
+        lbCount.className = "lb-count";
+
+        var close = mkBtn("✕", "lb-close", "Cerrar");
+        var prev = mkBtn("‹", "lb-prev", "Foto anterior");
+        var next = mkBtn("›", "lb-next", "Foto siguiente");
+
+        close.addEventListener("click", closeLb);
+        prev.addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
+        next.addEventListener("click", function (e) { e.stopPropagation(); step(1); });
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox || e.target === lbImg) closeLb();
+        });
+
+        lightbox.appendChild(lbImg);
+        lightbox.appendChild(lbCount);
+        lightbox.appendChild(close);
+        lightbox.appendChild(prev);
+        lightbox.appendChild(next);
+        document.body.appendChild(lightbox);
+
+        document.addEventListener("keydown", function (e) {
+          if (lightbox.hidden) return;
+          if (e.key === "Escape") closeLb();
+          if (e.key === "ArrowLeft") step(-1);
+          if (e.key === "ArrowRight") step(1);
+        });
+      }
+
+      function mkBtn(label, cls, aria) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "lb-btn " + cls;
+        b.textContent = label;
+        b.setAttribute("aria-label", aria);
+        return b;
+      }
+
+      function show() {
+        lbImg.src = srcFor(current);
+        lbCount.textContent = (current + 1) + " / " + COUNT;
+      }
+
+      function step(delta) {
+        current = (current + delta + COUNT) % COUNT;
+        show();
+      }
+
+      function closeLb() {
+        lightbox.hidden = true;
+        lbImg.src = "";
+        document.body.style.overflow = "";
+      }
+    })();
+  </script>
+</body>
+</html>
