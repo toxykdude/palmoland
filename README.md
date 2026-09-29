@@ -36,7 +36,7 @@ vida. Una página estática, sin backend: todo el contenido vive en `data.json`.
   los amigos pueden escanearlo con cualquier app bancaria o transferir al número.
 
 Pendientes del admin (marcados con `TODO-ADMIN` en las páginas):
-fecha y finca, titular de la cuenta, y WhatsApp de contacto.
+finca (ubicación), titular de la cuenta, y WhatsApp de contacto.
 
 ## Notas técnicas
 
