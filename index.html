@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palmoland 🌴 — El festival de los amigos</title>
+  <meta name="description" content="Palmoland: el festival privado de los amigos de toda la vida. Música electrónica, finca, y los mismos de siempre. Aporta y súmate a la fiesta 🎧🌴" />
+  <meta name="theme-color" content="#070b16" />
+
+  <!-- Open Graph / WhatsApp preview -->
+  <meta property="og:title" content="Palmoland 🌴 — El festival de los amigos" />
+  <meta property="og:description" content="El festival privado de los amigos de toda la vida. Aporta, mira el progreso y súmate a la fiesta 🎧" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:url" content="https://toxykdude.github.io/palmoland/" />
+  <meta property="og:image" content="https://toxykdude.github.io/palmoland/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Palmoland 🌴 — El festival de los amigos" />
+  <meta name="twitter:description" content="El festival privado de los amigos de toda la vida. Aporta y súmate a la fiesta 🎧" />
+  <meta name="twitter:image" content="https://toxykdude.github.io/palmoland/og-image.png" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="grid-floor"></div>
+      <svg class="palm palm-left" viewBox="0 0 120 160" aria-hidden="true"><use href="#palm-shape"/></svg>
+      <svg class="palm palm-right" viewBox="0 0 120 160" aria-hidden="true"><use href="#palm-shape"/></svg>
+    </div>
+
+    <!-- Palm silhouette definition -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <g id="palm-shape">
+          <path d="M60 160 C58 120 56 100 54 78 L66 78 C63 104 61 128 60 160 Z" />
+          <path d="M60 78 C40 70 22 74 8 88 C24 76 44 76 60 84 Z" />
+          <path d="M60 78 C44 62 30 58 10 60 C32 56 48 62 61 72 Z" />
+          <path d="M60 76 C56 56 48 42 32 32 C46 42 56 56 60 72 Z" />
+          <path d="M60 76 C64 54 74 40 92 32 C76 44 64 58 61 74 Z" />
+          <path d="M60 78 C78 64 96 62 114 68 C96 60 76 64 60 74 Z" />
+          <path d="M60 80 C80 74 98 78 112 92 C96 78 76 78 60 86 Z" />
+          <circle cx="54" cy="80" r="4" /><circle cx="66" cy="80" r="4" /><circle cx="60" cy="86" r="4" />
+        </g>
+      </defs>
+    </svg>
+
+    <div class="hero-content">
+      <p class="hero-kicker">🏡 Finca · 🎧 Electrónica · 🌴 Amigos desde los 90s</p>
+      <h1 class="hero-title">PALMO<span>LAND</span></h1>
+      <p class="hero-tagline">El festival de los amigos de toda la vida.</p>
+      <p class="hero-date todo-admin"><span class="todo-tag">TODO-ADMIN</span> Fecha y finca por confirmar — próximamente aquí</p>
+      <a class="btn btn-primary btn-big" href="#aportar">Quiero aportar 💸</a>
+      <a class="hero-scroll" href="#progreso" aria-label="Ver progreso de la recaudación">▼</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ PROGRESO ============ -->
+    <section class="section" id="progreso" aria-labelledby="progreso-title">
+      <div class="wrap">
+        <h2 class="section-title" id="progreso-title">La vaquita <span class="accent">🌴</span></h2>
+        <p class="section-sub">Entre todos financiamos la finca, el sonido y la fiesta.</p>
+
+        <div class="card progress-card">
+          <div class="progress-bar" role="progressbar" aria-label="Progreso de la recaudación"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="main-bar" tabindex="0">
+            <div class="bar-fill" id="bar-fill"></div>
+            <!-- Milestone 1 pin at 50% (rendered by JS) -->
+            <div class="bar-pin" id="bar-pin">
+              <span class="pin-icon" id="pin-icon" aria-hidden="true">🚩</span>
+              <span class="pin-label">Meta 1</span>
+            </div>
+          </div>
+
+          <p class="goal-banner hidden" id="goal-banner">¡Nos pasamos de la meta! 🎉 ¡Qué banda! 🌴</p>
+
+          <div class="stats-grid">
+            <div class="stat">
+              <span class="stat-value" id="stat-total" aria-live="polite">$0</span>
+              <span class="stat-label">Recaudado</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="stat-remaining">$0</span>
+              <span class="stat-label">Falta</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="stat-pct">0%</span>
+              <span class="stat-label">De la meta</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="stat-count">0</span>
+              <span class="stat-label">Aportantes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="milestones" id="milestones">
+          <article class="card milestone-card" id="milestone-0">
+            <div class="milestone-head">
+              <span class="milestone-emoji">🏡</span>
+              <div>
+                <h3 class="milestone-name">Meta 1: Reservar la finca</h3>
+                <p class="milestone-desc">Lo urgente: asegurar la finca cuanto antes.</p>
+              </div>
+            </div>
+            <div class="milestone-subbar"><div class="subbar-fill" id="subbar-0"></div></div>
+            <p class="milestone-status"><span id="milestone-amount-0">$0 de $1.000.000</span> · <strong id="milestone-state-0">En camino</strong></p>
+          </article>
+
+          <article class="card milestone-card" id="milestone-1">
+            <div class="milestone-head">
+              <span class="milestone-emoji">🌴</span>
+              <div>
+                <h3 class="milestone-name">Meta 2: Palmoland completo</h3>
+                <p class="milestone-desc">Sonido, luces y producción de la fiesta.</p>
+              </div>
+            </div>
+            <div class="milestone-subbar"><div class="subbar-fill" id="subbar-1"></div></div>
+            <p class="milestone-status"><span id="milestone-amount-1">$0 de $2.000.000</span> · <strong id="milestone-state-1">En camino</strong></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PATROCINADORES ============ -->
+    <section class="section section-alt" id="patrocinadores" aria-labelledby="patro-title">
+      <div class="wrap">
+        <h2 class="section-title" id="patro-title">Los Patrocinadores <span class="accent">👑</span></h2>
+        <p class="section-sub">La pared de la fama. <strong id="patro-count">0</strong> leyendas ya aportaron.</p>
+
+        <div class="tabs" role="tablist" aria-label="Vistas de patrocinadores">
+          <button class="tab active" id="tab-top" role="tab" aria-selected="true" aria-controls="view-top">🏆 Top aportantes</button>
+          <button class="tab" id="tab-recent" role="tab" aria-selected="false" aria-controls="view-recent">🕒 Últimos aportes</button>
+          <span class="tab-glider" id="tab-glider" aria-hidden="true"></span>
+        </div>
+
+        <div id="view-top" role="tabpanel" aria-labelledby="tab-top">
+          <div class="podium" id="podium"></div>
+          <ol class="rank-list" id="rank-list"></ol>
+        </div>
+
+        <div id="view-recent" role="tabpanel" aria-labelledby="tab-recent" hidden>
+          <ul class="entry-list" id="recent-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO APORTAR ============ -->
+    <section class="section" id="aportar" aria-labelledby="aportar-title">
+      <div class="wrap">
+        <h2 class="section-title" id="aportar-title">Cómo aportar 💸</h2>
+        <p class="section-sub">Tres pasos y quedas en la pared de la fama.</p>
+
+        <div class="steps">
+          <article class="card step">
+            <span class="step-num">1</span>
+            <h3>Transfiere tu aporte</h3>
+            <div class="todo-admin todo-block">
+              <span class="todo-tag">TODO-ADMIN</span>
+              <p>📱 Nequi / Daviplata: <strong>300 000 0000</strong></p>
+              <p>🏦 Cuenta de ahorros: <strong>Banco — 000 000 000 00</strong></p>
+            </div>
+            <p class="step-hint">Cualquier monto suma. Sugerido: desde $50.000 💚</p>
+          </article>
+
+          <article class="card step">
+            <span class="step-num">2</span>
+            <h3>Avísanos</h3>
+            <div class="todo-admin todo-block">
+              <span class="todo-tag">TODO-ADMIN</span>
+              <p>📲 Escríbenos al WhatsApp de la organización: <strong>+57 300 000 0000</strong></p>
+            </div>
+            <p class="step-hint">Mándanos el comprobante y tu nombre de artista 🎤</p>
+          </article>
+
+          <article class="card step">
+            <span class="step-num">3</span>
+            <h3>Te subimos a la fama</h3>
+            <p class="step-hint">Confirmamos tu aporte y apareces en <a href="#patrocinadores">Los Patrocinadores</a> con tu emoji. Que el mundo sepa. 👑</p>
+          </article>
+        </div>
+
+        <div class="share-row">
+          <a class="btn btn-wa" id="btn-wa" href="#" target="_blank" rel="noopener">Compartir en WhatsApp 📲</a>
+          <button class="btn btn-ghost" id="btn-copy">Copiar link 🔗</button>
+          <span class="copy-feedback" id="copy-feedback" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="wrap wrap-narrow">
+        <h2 class="section-title" id="faq-title">Preguntas frecuentes 🤔</h2>
+
+        <details class="card faq-item">
+          <summary>¿Quién organiza esto?</summary>
+          <p>Los mismos de toda la vida. Palmoland es un festival privado entre amigos: sin patrocinadores, sin foreigns, solo la banda. 🎧</p>
+        </details>
+        <details class="card faq-item">
+          <summary>¿Qué incluye mi aporte?</summary>
+          <p>La finca, el sistema de sonido, las luces y la producción de la fiesta. Con la Meta 1 aseguramos la finca; con la Meta 2, Palmoland completo. 🌴</p>
+        </details>
+        <details class="card faq-item">
+          <summary>¿Cuándo es?</summary>
+          <p>La fecha se confirma apenas reservemos la finca (Meta 1). Mantente pegado al grupo. 🔜</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-title">PALMOLAND 🌴</p>
+      <p>Hecho con ❤️, 🎧 y cero sueño por los amigos de toda la vida.</p>
+      <p class="footer-admin">🛠️ Admin: <a href="https://github.com/toxykdude/palmoland" target="_blank" rel="noopener">edita <code>data.json</code> y haz push</a> — el sitio se actualiza solo.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

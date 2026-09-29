@@ -1,0 +1,17 @@
+# Secrets — never commit
+.env
+.env.*
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor junk
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Local agent tooling
+.atl/
