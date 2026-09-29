@@ -11,6 +11,7 @@
     { "name": "Diego Robledo", "amount": 100000, "date": "2026-09-29", "emoji": "🎧", "photo": "images/pals/diego-hernan-robledo-gira.png" },
     { "name": "William Gata", "amount": 100000, "date": "2026-09-29", "emoji": "😼", "photo": "images/pals/william-gata.png" },
     { "name": "Paco", "amount": 100000, "date": "2026-09-29", "emoji": "🍻", "photo": "images/pals/juan-camilo-parra-aguirre.png" },
-    { "name": "Flypy", "amount": 100000, "date": "2026-09-29", "emoji": "🛸", "photo": "images/pals/mauro.png" }
+    { "name": "Flypy", "amount": 100000, "date": "2026-09-29", "emoji": "🛸", "photo": "images/pals/mauro.png" },
+    { "name": "Caliche", "amount": 100000, "date": "2026-09-29", "emoji": "📐", "photo": "images/pals/caliche-obando-palmar-arquitecto.png" }
   ]
 }
