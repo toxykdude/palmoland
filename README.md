@@ -29,15 +29,14 @@ vida. Una página estática, sin backend: todo el contenido vive en `data.json`.
 3. La barra de progreso, contadores, milestones y la pared de la fama se
    recalculan automáticamente.
 
-## Cuenta Bancolombia (aportar.html)
+## Pagos (aportar.html)
 
-- Cuenta de Ahorros **No. 059 397 064 80**.
-- El QR está pendiente (TODO-ADMIN en la página): cuando exista el QR real de
-  la cuenta, guardar como `images/qr.jpeg` y reemplazar el bloque
-  `qr-placeholder` en `aportar.html` por el `<img>` que está en el comentario.
+- Cuenta de Ahorros Bancolombia **No. 059 397 064 80**.
+- QR de pago **PowerHouse** (`images/qr.jpeg`) — negocio del propio organizador;
+  los amigos pueden escanearlo con cualquier app bancaria o transferir al número.
 
 Pendientes del admin (marcados con `TODO-ADMIN` en las páginas):
-fecha y finca, titular de la cuenta, WhatsApp de contacto, y el QR de Bancolombia.
+fecha y finca, titular de la cuenta, y WhatsApp de contacto.
 
 ## Notas técnicas
 
