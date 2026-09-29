@@ -120,19 +120,65 @@
   }
 
   /* ---------------- Patrocinadores ---------------- */
-  function entryHtml(entry, opts) {
-    var rank = opts && opts.rank ? '<span class="entry-rank">' + opts.rank + "</span>" : "";
-    return (
-      '<div class="entry" style="animation-delay:' + ((opts && opts.delay) || 0) + 'ms">' +
-      rank +
-      '<span class="entry-avatar">' + esc(entry.emoji || "🎧") + "</span>" +
-      '<span class="entry-main"><span class="entry-name">' + esc(entry.name) + "</span>" +
-      '<br><span class="entry-date">' + esc(fmtDate(entry.date)) + "</span></span>" +
-      '<span class="entry-amount">' + fmt(entry.amount) + "</span>" +
-      "</div>"
-    );
+  function avatarInner(entry, cls) {
+    if (entry.photo) {
+      var img = document.createElement("img");
+      img.src = entry.photo;
+      img.alt = "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.onerror = function () {
+        /* fall back to emoji if the photo is missing */
+        var span = document.createElement("span");
+        span.textContent = entry.emoji || "🎧";
+        img.replaceWith(span);
+      };
+      return img;
+    }
+    var span = document.createElement("span");
+    span.textContent = entry.emoji || "🎧";
+    return span;
   }
 
+  function entryNode(entry, opts) {
+    var wrap = document.createElement("div");
+    wrap.className = "entry";
+    wrap.style.animationDelay = ((opts && opts.delay) || 0) + "ms";
+
+    if (opts && opts.rank) {
+      var rank = document.createElement("span");
+      rank.className = "entry-rank";
+      rank.textContent = opts.rank;
+      wrap.appendChild(rank);
+    }
+
+    var avatar = document.createElement("span");
+    avatar.className = "entry-avatar";
+    avatar.appendChild(avatarInner(entry));
+    wrap.appendChild(avatar);
+
+    var main = document.createElement("span");
+    main.className = "entry-main";
+    var name = document.createElement("span");
+    name.className = "entry-name";
+    name.textContent = entry.name;
+    var date = document.createElement("span");
+    date.className = "entry-date";
+    date.textContent = fmtDate(entry.date);
+    main.appendChild(name);
+    main.appendChild(document.createElement("br"));
+    main.appendChild(date);
+    wrap.appendChild(main);
+
+    var amount = document.createElement("span");
+    amount.className = "entry-amount";
+    amount.textContent = fmt(entry.amount);
+    wrap.appendChild(amount);
+
+    return wrap;
+  }
+
+  /* ---------------- Participants render ---------------- */
   function renderParticipants(participants) {
     var countEl = $("#patro-count");
     var podiumEl = $("#podium");
@@ -161,30 +207,38 @@
       var p = byAmount[i];
       podiumHtml +=
         '<div class="podium-slot ' + classes[i] + '">' +
-        '<div class="podium-avatar">' + esc(p.emoji || "🎧") + "</div>" +
+        '<div class="podium-avatar"></div>' +
         '<div class="podium-name">' + esc(p.name) + "</div>" +
         '<div class="podium-amount">' + fmt(p.amount) + "</div>" +
         '<div class="podium-base">' + medals[i] + "</div>" +
         "</div>";
     }
     podiumEl.innerHTML = podiumHtml;
+    /* avatars inserted as nodes so photo fallback works */
+    var podiumAvatars = podiumEl.querySelectorAll(".podium-avatar");
+    for (var j = 0; j < podiumAvatars.length; j++) {
+      podiumAvatars[j].appendChild(avatarInner(byAmount[j]));
+    }
 
     /* Ranked list from 4th place */
-    var rankHtml = "";
+    rankEl.innerHTML = "";
     if (byAmount.length > 3) {
-      rankHtml = byAmount.slice(3).map(function (p, idx) {
-        return '<li style="list-style:none">' +
-          entryHtml(p, { rank: idx + 4, delay: 260 + idx * 90 }) + "</li>";
-      }).join("");
+      byAmount.slice(3).forEach(function (p, idx) {
+        var li = document.createElement("li");
+        li.appendChild(entryNode(p, { rank: idx + 4, delay: 260 + idx * 90 }));
+        rankEl.appendChild(li);
+      });
     } else {
-      rankHtml = '<li style="list-style:none"><p class="empty-note">Solo hay podio por ahora. Muevo el cue. 🎧</p></li>';
+      rankEl.innerHTML = '<li style="list-style:none"><p class="empty-note">Solo hay podio por ahora. Muevo el cue. 🎧</p></li>';
     }
-    rankEl.innerHTML = rankHtml;
 
     /* Recent */
-    recentEl.innerHTML = byDate.map(function (p, idx) {
-      return "<li>" + entryHtml(p, { delay: idx * 90 }) + "</li>";
-    }).join("");
+    recentEl.innerHTML = "";
+    byDate.forEach(function (p, idx) {
+      var li = document.createElement("li");
+      li.appendChild(entryNode(p, { delay: idx * 90 }));
+      recentEl.appendChild(li);
+    });
   }
 
   /* ---------------- Tabs ---------------- */
@@ -194,6 +248,7 @@
     var viewTop = $("#view-top");
     var viewRecent = $("#view-recent");
     var tabs = $(".tabs");
+    if (!tabTop || !tabRecent || !viewTop || !viewRecent || !tabs) return;
 
     function select(isTop) {
       tabTop.classList.toggle("active", isTop);
@@ -319,6 +374,9 @@
   function boot() {
     initTabs();
     initShare();
+
+    /* Secondary pages (e.g. aportar.html) only reuse tabs/share — no data to render */
+    if (!$("#main-bar")) return;
 
     fetch("data.json?v=" + Date.now())
       .then(function (r) {

@@ -5,12 +5,7 @@
     { "amount": 2000000, "label": "Palmoland completo", "emoji": "🌴" }
   ],
   "participants": [
-    { "name": "El Pibe", "amount": 150000, "date": "2026-09-20", "emoji": "🎧" },
-    { "name": "La Gata", "amount": 200000, "date": "2026-09-21", "emoji": "😼" },
-    { "name": "Chuzo", "amount": 80000, "date": "2026-09-22", "emoji": "⚡" },
-    { "name": "Doña Rave", "amount": 120000, "date": "2026-09-24", "emoji": "🌈" },
-    { "name": "Mani", "amount": 100000, "date": "2026-09-25", "emoji": "💿" },
-    { "name": "Tatoo", "amount": 60000, "date": "2026-09-27", "emoji": "🔥" },
-    { "name": "Peluca", "amount": 70000, "date": "2026-09-28", "emoji": "🦜" }
+    { "name": "Bolívar Cañas", "amount": 300000, "date": "2026-09-27", "emoji": "💊", "photo": "images/pals/drogueria-bolivar-plaza.png" },
+    { "name": "Caliche", "amount": 100000, "date": "2026-09-28", "emoji": "📐", "photo": "images/pals/caliche-obando-palmar-arquitecto.png" }
   ]
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aportar — Palmoland 🌴</title>
+  <meta name="description" content="Cuenta Bancolombia para aportar a Palmoland, el festival de los amigos de toda la vida." />
+  <meta name="theme-color" content="#070b16" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="wrap">
+    <nav class="page-head" aria-label="Volver al inicio">
+      <a href="index.html">← Volver</a>
+      <span class="page-logo" aria-hidden="true">PALMOLAND 🌴</span>
+    </nav>
+  </div>
+
+  <main class="section" style="padding-top:1.5rem">
+    <div class="wrap">
+      <h1 class="section-title">Aportar a Palmoland 💸</h1>
+      <p class="section-sub">Transfiere tu aporte y quedas en la pared de la fama.</p>
+
+      <div class="card pay-card">
+        <p class="bank-name">🏦 Bancolombia</p>
+        <p class="bank-type">Cuenta de Ahorros</p>
+        <p class="account-number" id="account-number">059 397 064 80</p>
+        <p class="account-holder todo-admin"><span class="todo-tag">TODO-ADMIN</span> Titular: confirmar nombre exacto de la cuenta</p>
+
+        <button class="btn btn-ghost" id="btn-copy-account" type="button">Copiar número de cuenta 🔗</button>
+        <span class="copy-feedback" id="account-copy-feedback" aria-live="polite"></span>
+
+        <div class="qr-box" id="qr-box">
+          <!-- TODO-ADMIN: replace this block with the Bancolombia account QR:
+               <img src="images/qr.jpeg" alt="QR de la cuenta Bancolombia para aportar a Palmoland" />
+               (the qr.jpeg provided so far was the PowerHouse Gym promo QR — wrong payment target) -->
+          <div class="qr-placeholder">
+            <span class="todo-tag">TODO-ADMIN</span>
+            <p><strong>QR de la cuenta pendiente.</strong><br />Por ahora transfiere al número de arriba mientras conseguimos el QR de Bancolombia. 🙌</p>
+          </div>
+        </div>
+
+        <p class="qr-hint">📱 Si tu app lo permite, también puedes ingresar el número manualmente.</p>
+      </div>
+
+      <p class="pay-steps-note">
+        Después de transferir, avísanos por el grupo y te subimos a
+        <a href="index.html#patrocinadores">Los Patrocinadores</a>. 👑
+      </p>
+
+      <div class="share-row">
+        <a class="btn btn-wa" id="btn-wa" href="#" target="_blank" rel="noopener">Compartir en WhatsApp 📲</a>
+        <button class="btn btn-ghost" id="btn-copy">Copiar link de Palmoland 🔗</button>
+        <span class="copy-feedback" id="copy-feedback" aria-live="polite"></span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-title">PALMOLAND 🌴</p>
+      <p>Hecho con ❤️, 🎧 y cero sueño por los amigos de toda la vida.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+  <script>
+    // Copy account number (page-specific, independent of app.js)
+    document.addEventListener("DOMContentLoaded", function () {
+      var btn = document.getElementById("btn-copy-account");
+      var feedback = document.getElementById("account-copy-feedback");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var text = "059 397 064 80";
+        function done() {
+          feedback.textContent = "¡Copiado! ✅";
+          setTimeout(function () { feedback.textContent = ""; }, 2200);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+        } else {
+          fallback(text, done);
+        }
+      });
+      function fallback(text, done) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { /* no-op */ }
+        ta.remove();
+      }
+    });
+  </script>
+</body>
+</html>
